@@ -1,6 +1,9 @@
 // ❗ You don't need to add extra action creators to achieve MVP
+import axios from "axios";
 
 export const INPUT_CHANGE = "INPUT_CHANGE";
+
+export const RESET_FORM = "RESET_FORM";
 
 export function moveClockwise() {}
 
@@ -14,7 +17,9 @@ export function setQuiz() {}
 
 export function inputChange() {}
 
-export function resetForm() {}
+export function resetForm() {
+  return { type: RESET_FORM };
+}
 
 // ❗ Async action creators
 export function fetchQuiz() {
@@ -34,6 +39,14 @@ export function postAnswer() {
 }
 export function postQuiz() {
   return function (dispatch) {
+    axios
+      .post(`http://localhost:9000/api/quiz/new`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // On successful POST:
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form
