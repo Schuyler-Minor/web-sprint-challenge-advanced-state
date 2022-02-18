@@ -1,6 +1,6 @@
 // ❗ You don't need to add extra reducers to achieve MVP
 import { combineReducers } from "redux";
-
+import * as types from "./action-types";
 const initialWheelState = 0;
 function wheel(state = initialWheelState, action) {
   return state;
@@ -28,6 +28,8 @@ const initialFormState = {
 };
 function form(state = initialFormState, action) {
   switch (action.type) {
+    case types.INPUT_CHANGE:
+      return action.payload;
     default:
       return state;
   }
