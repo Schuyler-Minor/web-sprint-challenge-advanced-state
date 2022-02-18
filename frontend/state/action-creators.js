@@ -2,15 +2,26 @@
 import axios from "axios";
 import * as types from "./action-types";
 
-export function moveClockwise() {}
+export const moveClockwise = (number) => {
+  return { type: MOVE_CLOCKWISE, payload: number };
+};
 
-export function moveCounterClockwise() {}
+export const moveCounterClockwise = (number) => {
+  return { type: MOVE_COUNTER_CLOCKWISE, payload: number };
+};
 
 export function selectAnswer() {}
 
 export function setMessage() {}
 
-export function setQuiz() {}
+export const setQuiz = () => ({
+  type: types.SET_QUIZ_INTO_STATE,
+  payload: {
+    question_text: "",
+    true_answer_text: "",
+    false_answer_text: "",
+  },
+});
 
 export const inputChange = (value) => ({
   type: types.INPUT_CHANGE,
@@ -51,12 +62,14 @@ export function postAnswer() {
     // - Dispatch the fetching of the next quiz
   };
 }
-export function postQuiz() {
+export function postQuiz(id) {
   return function (dispatch) {
     axios
       .post(`http://localhost:9000/api/quiz/new`)
       .then((res) => {
+        debugger;
         console.log(res);
+        dispatch({ type: types.SET_QUIZ_INTO_STATE, payload: res.question });
       })
       .catch((err) => {
         console.log(err);
