@@ -62,21 +62,18 @@ export function postAnswer() {
     // - Dispatch the fetching of the next quiz
   };
 }
-export function postQuiz(id) {
-  return function (dispatch) {
-    axios
-      .post(`http://localhost:9000/api/quiz/new`)
-      .then((res) => {
-        debugger;
-        console.log(res);
-        dispatch({ type: types.SET_QUIZ_INTO_STATE, payload: res.question });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // On successful POST:
-    // - Dispatch the correct message to the the appropriate state
-    // - Dispatch the resetting of the form
-  };
-}
+export const postQuiz = () => (dispatch) => {
+  axios
+    .post(`http://localhost:9000/api/quiz/new`)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: types.SET_QUIZ_INTO_STATE, payload: id });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // On successful POST:
+  // - Dispatch the correct message to the the appropriate state
+  // - Dispatch the resetting of the form
+};
 // ❗ On promise rejections, use log statements or breakpoints, and put an appropriate error message in state

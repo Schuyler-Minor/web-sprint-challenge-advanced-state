@@ -1,6 +1,7 @@
 // ❗ You don't need to add extra reducers to achieve MVP
 import { combineReducers } from "redux";
 import * as types from "./action-types";
+
 const initialWheelState = 0;
 function wheel(state = initialWheelState, action) {
   switch (action.type) {
@@ -31,7 +32,7 @@ function infoMessage(state = initialMessageState, action) {
 const initialFormState = {
   newQuestion: "",
   newTrueAnswer: "",
-  newFalseAnswer: "",
+  false_answer_text: "",
 };
 function form(state = initialFormState, action) {
   switch (action.type) {
