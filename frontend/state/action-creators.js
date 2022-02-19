@@ -7,7 +7,7 @@ export const moveClockwise = () => {
 };
 
 export const moveCounterClockwise = () => {
-  return { type: MOVE_COUNTER_CLOCKWISE };
+  return { type: types.MOVE_COUNTERCLOCKWISE };
 };
 
 export function selectAnswer() {}

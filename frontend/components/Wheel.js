@@ -8,6 +8,11 @@ function Wheel(props) {
     props.moveClockwise(value);
   };
 
+  const counterChange = (evt) => {
+    const { value } = evt.target;
+    props.moveCounterClockwise(value);
+  };
+
   console.log(props.wheel);
   return (
     <div id="wrapper">
@@ -23,7 +28,9 @@ function Wheel(props) {
         {/* --i is a custom CSS property, no need to touch that nor the style object */}
       </div>
       <div id="keypad">
-        <button id="counterClockwiseBtn">Counter clockwise</button>
+        <button onClick={counterChange} id="counterClockwiseBtn">
+          Counter clockwise
+        </button>
         <button onClick={clockwiseChange} id="clockwiseBtn">
           Clockwise
         </button>
