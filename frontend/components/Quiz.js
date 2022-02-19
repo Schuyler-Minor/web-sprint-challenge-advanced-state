@@ -5,6 +5,7 @@ import * as actionCreators from "../state/action-creators";
 function Quiz(props) {
   const onSubmit = (evt) => {
     evt.preventDefault();
+    props.postAnswer(value);
   };
 
   const onChange = (evt) => {

@@ -10,8 +10,8 @@ export const moveCounterClockwise = () => {
   return { type: types.MOVE_COUNTERCLOCKWISE };
 };
 
-export const selectAnswer = () => {
-  return { type: types.SET_SELECTED_ANSWER };
+export const selectAnswer = (value) => {
+  return { type: types.SET_SELECTED_ANSWER, payload: value };
 };
 
 export function setMessage() {}
@@ -53,7 +53,7 @@ export function postAnswer() {
     axios
       .post(`http://localhost:9000/api/quiz/answer`)
       .then((res) => {
-        console.log(res);
+        dispatch({ type: types.SET_SELECTED_ANSWER });
       })
       .catch((err) => {
         console.log(err);
