@@ -10,7 +10,9 @@ export const moveCounterClockwise = () => {
   return { type: types.MOVE_COUNTERCLOCKWISE };
 };
 
-export function selectAnswer() {}
+export const selectAnswer = () => {
+  return { type: types.SET_SELECTED_ANSWER };
+};
 
 export function setMessage() {}
 

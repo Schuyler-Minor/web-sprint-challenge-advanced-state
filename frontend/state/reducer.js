@@ -19,9 +19,14 @@ function quiz(state = initialQuizState, action) {
   return state;
 }
 
-const initialSelectedAnswerState = null;
+const initialSelectedAnswerState = true;
 function selectedAnswer(state = initialSelectedAnswerState, action) {
-  return state;
+  switch (action.type) {
+    case types.SET_SELECTED_ANSWER:
+      return !state;
+    default:
+      return state;
+  }
 }
 
 const initialMessageState = "";

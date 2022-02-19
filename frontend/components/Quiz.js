@@ -1,10 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actionCreators from "../state/action-creators";
 
-export default function Quiz(props) {
+function Quiz(props) {
   const onSubmit = (evt) => {
     evt.preventDefault();
   };
 
+  const onChange = (evt) => {
+    const { value } = evt.target;
+    props.selectAnswer(value);
+  };
+  console.log(props.selectedAnswer);
   return (
     <div id="wrapper">
       {
@@ -16,12 +23,12 @@ export default function Quiz(props) {
             <div id="quizAnswers">
               <div className="answer selected">
                 A function
-                <button>SELECTED</button>
+                <button onClick={onChange}>SELECTED</button>
               </div>
 
               <div className="answer">
                 An elephant
-                <button>Select</button>
+                <button onClick={onChange}>Select</button>
               </div>
             </div>
 
@@ -36,3 +43,4 @@ export default function Quiz(props) {
     </div>
   );
 }
+export default connect((st) => st, actionCreators)(Quiz);
