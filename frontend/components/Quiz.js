@@ -1,6 +1,10 @@
-import React from 'react'
+import React from "react";
 
 export default function Quiz(props) {
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+  };
+
   return (
     <div id="wrapper">
       {
@@ -12,23 +16,23 @@ export default function Quiz(props) {
             <div id="quizAnswers">
               <div className="answer selected">
                 A function
-                <button>
-                  SELECTED
-                </button>
+                <button>SELECTED</button>
               </div>
 
               <div className="answer">
                 An elephant
-                <button>
-                  Select
-                </button>
+                <button>Select</button>
               </div>
             </div>
 
-            <button id="submitAnswerBtn">Submit answer</button>
+            <button onSubmit={onSubmit} id="submitAnswerBtn">
+              Submit answer
+            </button>
           </>
-        ) : 'Loading next quiz...'
+        ) : (
+          "Loading next quiz..."
+        )
       }
     </div>
-  )
+  );
 }

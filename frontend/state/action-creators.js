@@ -2,12 +2,12 @@
 import axios from "axios";
 import * as types from "./action-types";
 
-export const moveClockwise = (number) => {
-  return { type: MOVE_CLOCKWISE, payload: number };
+export const moveClockwise = () => {
+  return { type: types.MOVE_CLOCKWISE };
 };
 
-export const moveCounterClockwise = (number) => {
-  return { type: MOVE_COUNTER_CLOCKWISE, payload: number };
+export const moveCounterClockwise = () => {
+  return { type: MOVE_COUNTER_CLOCKWISE };
 };
 
 export function selectAnswer() {}
