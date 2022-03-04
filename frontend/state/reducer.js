@@ -6,9 +6,10 @@ const initialWheelState = 0;
 function wheel(state = initialWheelState, action) {
   switch (action.type) {
     case types.MOVE_CLOCKWISE:
-      return state + 1;
+      if (state >= 0 && state < 6) return state + 1;
+
     case types.MOVE_COUNTERCLOCKWISE:
-      return state - 1;
+      if (state > -1 && state <= 6) return state - 1;
     default:
       return state;
   }
@@ -17,6 +18,8 @@ function wheel(state = initialWheelState, action) {
 const initialQuizState = [];
 function quiz(state = initialQuizState, action) {
   switch (action.type) {
+    case types.SET_QUIZ_INTO_STATE:
+      return [...state, action.payload];
     default:
       return state;
   }
@@ -48,10 +51,15 @@ const initialFormState = {
 function form(state = initialFormState, action) {
   switch (action.type) {
     case types.INPUT_CHANGE:
+      console.log(action, state);
       return {
         ...state,
         newQuestion: action.payload,
+        newTrueAnswer: action.payload,
+        newFalseAnswer: action.payload,
       };
+    case types.RESET_FORM:
+      return state;
     default:
       return state;
   }

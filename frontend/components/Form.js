@@ -1,24 +1,29 @@
-import React, { useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../state/action-creators";
 
+const initialFormState = {
+  newQuestion: "",
+  newTrueAnswer: "",
+  newFalseAnswer: "",
+};
 function Form(props) {
-  console.log(props.form);
+  const [values, setValues] = useState(initialFormState);
+  console.log(values);
   const onChange = (evt) => {
     const { value } = evt.target;
-    props.inputChange(value);
+    setValues({ newQuestion: value });
   };
 
   const onSubmit = (evt) => {
     evt.preventDefault();
-    props.postQuiz(props.form);
   };
 
   return (
     <form id="form" onSubmit={onSubmit}>
       <h2>Create New Quiz</h2>
       <input
-        value={props.inputChange.value}
+        value={props.values}
         maxLength={50}
         onChange={onChange}
         id="newQuestion"
