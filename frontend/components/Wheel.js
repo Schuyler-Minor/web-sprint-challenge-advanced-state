@@ -28,7 +28,7 @@ function Wheel(props) {
         {/* --i is a custom CSS property, no need to touch that nor the style object */}
       </div>
       <div id="keypad">
-        <button  onClick={counterChange} id="counterClockwiseBtn">
+        <button onClick={counterChange} id="counterClockwiseBtn">
           Counter clockwise
         </button>
         <button onClick={clockwiseChange} id="clockwiseBtn">

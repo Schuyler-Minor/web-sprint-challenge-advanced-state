@@ -2,35 +2,33 @@
 import axios from "axios";
 import * as types from "./action-types";
 
-export const moveClockwise = () => {
+export function moveClockwise() {
   return { type: types.MOVE_CLOCKWISE };
-};
+}
 
-export const moveCounterClockwise = () => {
+export function moveCounterClockwise() {
   return { type: types.MOVE_COUNTERCLOCKWISE };
-};
+}
 
-export const selectAnswer = (value) => {
-  return { type: types.SET_SELECTED_ANSWER, payload: value };
-};
+export function selectAnswer(id) {
+  return { type: types.SET_SELECTED_ANSWER, payload: id };
+}
 
-export function setMessage() {}
+export function setMessage() {
+  return { type: types.SET_INFO_MESSAGE };
+}
 
-export const setQuiz = () => ({
-  type: types.SET_QUIZ_INTO_STATE,
-  payload: {
-    question_text: "",
-    true_answer_text: "",
-    false_answer_text: "",
-  },
-});
+export function setQuiz() {
+  return { type: types.SET_QUIZ_INTO_STATE };
+}
 
-export const inputChange = (value) => ({
-  type: types.INPUT_CHANGE,
-  payload: value,
-});
+export function inputChange(value) {
+  return { type: types.INPUT_CHANGE, payload: value };
+}
 
-export function resetForm() {}
+export function resetForm() {
+  return { type: types.RESET_FORM };
+}
 
 // ❗ Async action creators
 export function fetchQuiz() {
@@ -38,7 +36,7 @@ export function fetchQuiz() {
     axios
       .get(`http://localhost:9000/api/quiz/next`)
       .then((res) => {
-        console.log(res);
+        dispatch({ type: types.INPUT_CHANGE, payload: value });
       })
       .catch((err) => {
         console.log(err);
@@ -53,7 +51,7 @@ export function postAnswer() {
     axios
       .post(`http://localhost:9000/api/quiz/answer`)
       .then((res) => {
-        dispatch({ type: types.SET_SELECTED_ANSWER });
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -64,18 +62,19 @@ export function postAnswer() {
     // - Dispatch the fetching of the next quiz
   };
 }
-export const postQuiz = () => (dispatch) => {
-  axios
-    .post(`http://localhost:9000/api/quiz/new`)
-    .then((res) => {
-      console.log(res);
-      dispatch({ type: types.SET_QUIZ_INTO_STATE, payload: id });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+export function postQuiz() {
+  return function (dispatch) {
+    axios
+      .post(`http://localhost:9000/api/quiz/new`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   // On successful POST:
   // - Dispatch the correct message to the the appropriate state
   // - Dispatch the resetting of the form
-};
+}
 // ❗ On promise rejections, use log statements or breakpoints, and put an appropriate error message in state

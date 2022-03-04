@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actionCreators from "../state/action-creators";
 
 function Form(props) {
+  console.log(props.form);
   const onChange = (evt) => {
     const { value } = evt.target;
     props.inputChange(value);
@@ -17,7 +18,7 @@ function Form(props) {
     <form id="form" onSubmit={onSubmit}>
       <h2>Create New Quiz</h2>
       <input
-        value={props.value}
+        value={props.inputChange.value}
         maxLength={50}
         onChange={onChange}
         id="newQuestion"

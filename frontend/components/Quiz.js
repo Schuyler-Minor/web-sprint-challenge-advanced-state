@@ -3,14 +3,15 @@ import { connect } from "react-redux";
 import * as actionCreators from "../state/action-creators";
 
 function Quiz(props) {
+  console.log(props.quiz);
+
   const onSubmit = (evt) => {
-    evt.preventDefault();
-    props.postAnswer(value);
+    props.fetchQuiz(value);
   };
 
   const onChange = (evt) => {
-    const { value } = evt.target;
-    props.selectAnswer(value);
+    const { id } = evt.target;
+    props.selectAnswer(id);
   };
   console.log(props.selectedAnswer);
   return (

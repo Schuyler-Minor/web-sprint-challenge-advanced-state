@@ -14,12 +14,15 @@ function wheel(state = initialWheelState, action) {
   }
 }
 
-const initialQuizState = null;
+const initialQuizState = [];
 function quiz(state = initialQuizState, action) {
-  return state;
+  switch (action.type) {
+    default:
+      return state;
+  }
 }
 
-const initialSelectedAnswerState = null;
+const initialSelectedAnswerState = false;
 function selectedAnswer(state = initialSelectedAnswerState, action) {
   switch (action.type) {
     case types.SET_SELECTED_ANSWER:
@@ -31,20 +34,24 @@ function selectedAnswer(state = initialSelectedAnswerState, action) {
 
 const initialMessageState = "";
 function infoMessage(state = initialMessageState, action) {
-  return state;
+  switch (action.type) {
+    default:
+      return state;
+  }
 }
 
 const initialFormState = {
   newQuestion: "",
   newTrueAnswer: "",
-  false_answer_text: "",
+  newFalseAnswer: "",
 };
 function form(state = initialFormState, action) {
   switch (action.type) {
-    case types.SET_QUIZ_INTO_STATE:
-      return [...state, action.payload];
     case types.INPUT_CHANGE:
-      return action.payload;
+      return {
+        ...state,
+        newQuestion: action.payload,
+      };
     default:
       return state;
   }
